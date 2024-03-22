@@ -8,6 +8,7 @@
 class Solution {
     public int[][] generateMatrix(int n) {
         int[][] matrix = new int[n][n];
+        // l for left, r for right, t for top, b for bottom
         int l, r, t, b;
         l = t = 0;
         r = b = n - 1;
@@ -19,6 +20,7 @@ class Solution {
             for (j = l; j <= r; j++) {
                 matrix[i][j] = val++;
             }
+            // as we incremented j 1 more time
             j--;
             t++;
             // fill every val in right col
