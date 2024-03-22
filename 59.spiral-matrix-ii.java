@@ -15,7 +15,7 @@ class Solution {
         int val = 1;
         int i, j;
         i = j = 0;
-        while (l < n) {
+        while (val < n*n) {
             // fill every val in top row
             for (j = l; j <= r; j++) {
                 matrix[i][j] = val++;
