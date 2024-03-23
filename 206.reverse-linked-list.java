@@ -52,6 +52,7 @@ Be very careful that n1's next must point to Ø. If you forget about this, your 
 
 
  */
+// this recursive solution is reversing the direction of the arrow from the last node to the first node
 class Solution {
     public ListNode reverseList(ListNode head) {
         if(head == null) return null;
@@ -63,6 +64,22 @@ class Solution {
     }
 }
 
-
+// iterative solution
+// reversing the list when travesing the list, simply by reverse the direction of the pointers
+// return prev since the last node's next is null
+class Solution {
+    public ListNode reverseList(ListNode head) {
+        ListNode cur = head;
+        ListNode next = null;
+        ListNode prev = null;
+        while(cur != null){
+            next = cur.next;
+            cur.next = prev;
+            prev = cur;
+            cur = next;
+        }
+        return prev;
+    }
+}
 // @lc code=end
 
