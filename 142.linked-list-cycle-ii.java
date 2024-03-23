@@ -16,6 +16,7 @@
  *     }
  * }
  */
+// my initial solution
 public class Solution {
     public ListNode detectCycle(ListNode head) {
         if(head == null || head.next == null) return null;
@@ -26,6 +27,29 @@ public class Solution {
             if(map.get(cur)>1) return cur;
             cur = cur.next;
         }
+        return null;
+    }
+}
+// editorial better approach using HashSet
+public class Solution {
+    public ListNode detectCycle(ListNode head) {
+        // Initialize an empty hash set
+        HashSet<ListNode> nodesSeen = new HashSet<>();
+        
+        // Start from the head of the linked list
+        ListNode node = head;
+        while (node != null) {
+            // If the current node is in nodesSeen, we have a cycle
+            if (nodesSeen.contains(node)) {
+                return node;
+            } else {
+                // Add this node to nodesSeen and move to the next node
+                nodesSeen.add(node);
+                node = node.next;
+            }
+        }
+
+        // If we reach a null node, there is no cycle
         return null;
     }
 }
