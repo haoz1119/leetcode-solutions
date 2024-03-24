@@ -30,8 +30,8 @@ class Solution {
     
     }
 }
-// better solution, compare and copy from the end of two arrays, as we are not makeing
-// another array
+// better solution, compare and copy from the end of two arrays, as we are not 
+// makeing another array, O(1) space
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
         int l = m - 1; // pointer for first array
