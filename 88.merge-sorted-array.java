@@ -34,8 +34,8 @@ class Solution {
 // another array
 class Solution {
     public void merge(int[] nums1, int m, int[] nums2, int n) {
-        int l = m - 1;
-        int r = n - 1;
+        int l = m - 1; // pointer for first array
+        int r = n - 1; // pointer for the second array
         for(int i = 0; i < m+n; i++){
             if(l < 0) {
                 nums1[m+n-1-i]=nums2[r--];
