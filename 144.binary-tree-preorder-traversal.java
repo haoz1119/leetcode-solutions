@@ -32,5 +32,24 @@ class Solution {
         return ls;
     }
 }
+
+// iterative solution using stack. push the right on first before
+// push the left, so that the left will be popped first
+// and we constantly popping  the left node first, delaying the right node 
+class Solution {
+    public List<Integer> preorderTraversal(TreeNode root) {
+        List<Integer> ls = new ArrayList<Integer>();
+        Stack<TreeNode> st = new Stack<>();
+        if(root == null) return ls;
+        else st.push(root);
+        while(!st.empty()){
+            TreeNode node = st.pop();
+            ls.add(node.val);
+            if(node.right != null) st.push(node.right);
+            if(node.left != null) st.push(node.left);
+        }
+        return ls;
+    }
+}
 // @lc code=end
 
