@@ -30,5 +30,26 @@ class Solution {
         return ls;
     }
 }
+
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        ArrayList<Integer> ls = new ArrayList<>();
+        if(root == null) return ls;
+        TreeNode cur = root;
+        while(cur != null || !st.empty()){
+            if (cur != null){
+                // constantly looking for the leftmost node
+               st.push(cur);
+               cur = cur.left;
+           }else{
+            // when there is no more left value, we pop
+               cur = st.pop();
+               ls.add(cur.val);
+               // then we go to the right
+               cur = cur.right;
+           }
+        }
+    }
+}
 // @lc code=end
 
