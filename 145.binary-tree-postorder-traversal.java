@@ -30,5 +30,25 @@ class Solution {
         return ls;
     }
 }
+
+// iterative solution 
+// we created a list with mid - right - left order, and reverse it into
+// the postorder left right mid
+class Solution {
+    public List<Integer> postorderTraversal(TreeNode root) {
+        ArrayList<Integer> ls = new ArrayList<>();
+        if(root == null) return ls;
+        Stack<TreeNode> st = new Stack<>();
+        st.push(root);
+        while(!st.empty()){
+            TreeNode node = st.pop();
+            ls.add(node.val);
+            if(node.left!=null) st.push(node.left);
+            if(node.right!=null) st.push(node.right);
+        }
+        Collections.reverse(ls);
+        return ls;
+    }
+}
 // @lc code=end
 
