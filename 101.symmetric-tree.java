@@ -33,5 +33,26 @@ class Solution {
         else return false;
     }
 }
+
+// its iterative equivalence
+class Solution {
+    public boolean isSymmetric(TreeNode root) {
+       Stack<TreeNode> q = new Stack<>();
+        q.push(root.left);
+        q.push(root.right);
+        while (!q.isEmpty()) {
+            TreeNode t1 = q.pop();
+            TreeNode t2 = q.pop();
+            if (t1 == null && t2 == null) continue;
+            if (t1 == null || t2 == null) return false;
+            if (t1.val != t2.val) return false;
+            q.push(t1.left);
+            q.push(t2.right);
+            q.push(t1.right);
+            q.push(t2.left);
+        }
+        return true;
+    }
+}
 // @lc code=end
 
