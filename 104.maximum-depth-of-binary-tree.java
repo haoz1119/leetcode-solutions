@@ -27,6 +27,8 @@ class Solution {
     }
 }
 
+// look at the above recursion, we found that we not only put the TreeNode on the 
+// stack but we also put the depth on the stack
 class Solution {
     public int maxDepth(TreeNode root) {
       LinkedList<TreeNode> stack = new LinkedList<>();
