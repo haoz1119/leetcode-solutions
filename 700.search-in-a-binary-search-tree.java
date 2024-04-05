@@ -28,5 +28,17 @@ class Solution {
         else return searchBST(root.left, val);
     }
 }
+
+class Solution {
+    public TreeNode searchBST(TreeNode root, int val) {
+        TreeNode cur = root;
+        while(cur != null){
+            if(cur.val == val) return cur;
+            if(cur.val < val) cur = cur.right;
+            else cur = cur.left;
+        }
+        return null;
+    }
+}
 // @lc code=end
 
