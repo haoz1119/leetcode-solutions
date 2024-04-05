@@ -20,6 +20,8 @@
  *     }
  * }
  */
+
+// to solve this kind of tree problems, try to ask if you can look at a tree diagram and solve it
 class Solution {
     public boolean isValidBST(TreeNode root) {
         if(root == null) return true;
