@@ -22,6 +22,8 @@
  */
 
 // to solve this kind of tree problems, try to ask if you can look at a tree diagram and solve it
+// all nodes in the left subtree must be less than the root node
+// all nodes in the right subtree must be greater than the root node
 class Solution {
     public boolean isValidBST(TreeNode root) {
         if(root == null) return true;
