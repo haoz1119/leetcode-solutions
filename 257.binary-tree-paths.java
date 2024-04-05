@@ -47,5 +47,30 @@ class Solution {
         return sl;
     }
 }
+
+class Solution {
+    public List<String> binaryTreePaths(TreeNode root) {
+        ArrayList<String> sl = new ArrayList<>();
+        if(root == null) return sl;
+        String s = ""+root.val;
+        if(root.left == null && root.right == null) {
+            sl.add(s);
+            return sl;
+        }
+        if(root.left!=null){
+            List<String> arr = binaryTreePaths(root.left);
+            for(String str : arr){
+                sl.add(s+"->"+str);
+            }
+        }
+        if(root.right!=null){
+            List<String> arr = binaryTreePaths(root.right);
+            for(String str : arr){
+                sl.add(s+"->"+str);
+            }
+        }
+        return sl;
+    }
+}
 // @lc code=end
 
