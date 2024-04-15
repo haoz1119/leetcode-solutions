@@ -60,6 +60,7 @@ class Solution {
         if(root != null && root.left == null && root.right == null){
             total += (sum*10 + root.val);
         }
+        // the most important thing to notice here is int is passed by value
         dfs(root.left, sum*10+root.val);
         dfs(root.right, sum*10+root.val);
     }
