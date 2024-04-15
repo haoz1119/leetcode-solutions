@@ -46,5 +46,23 @@ class Solution {
         }
     }
 }
+
+class Solution {
+    int total = 0;
+    public int sumNumbers(TreeNode root) {
+        dfs(root, 0);
+        return total;
+    }
+    public void dfs(TreeNode root, int sum){
+        if(root == null) {
+            return;
+        }
+        if(root != null && root.left == null && root.right == null){
+            total += (sum*10 + root.val);
+        }
+        dfs(root.left, sum*10+root.val);
+        dfs(root.right, sum*10+root.val);
+    }
+}
 // @lc code=end
 
