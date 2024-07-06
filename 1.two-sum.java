@@ -23,6 +23,24 @@ class Solution {
         return new int[]{};
     }
 }
+// this is a revisited solution i wrote, it is kinda wrong(it still passed the tests), because, if two number are the same, it will return the same index due to the structure of hashmap
+    public int[] twoSum2(int[] nums, int target) {
+        HashMap<Integer, Integer> hm = new HashMap<>();
+        int i = 0;
+        for(int num : nums){
+            hm.put(num, i);
+            i++;
+        }
+        i = 0;
+        for(int num : nums){
+            if(hm.containsKey(target - num)) 
+                if(hm.get(target-num)!= i)
+                    return new int[]{i, hm.get(target-num)};
+            i++;
+        }
+        return new int[]{};
+    }
+
 // my original solution
 class Solution {
     public int[] twoSum(int[] nums, int target) {
