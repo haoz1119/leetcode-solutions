@@ -1,3 +1,5 @@
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
 class solution_217 {
     public boolean containsDuplicate(int[] nums) {
@@ -24,14 +26,12 @@ class solution_217 {
       return false;
   }
   // quickest 
-  public boolean containsDuplicate_3(int[] nums) {
-    Set<Integer> set = new HashSet<>();
-
-    for(int num : nums) {
-        if(!set.add(num)) {
-            return true;
+  public boolean containsDuplicate3(int[] nums) {
+        HashSet<Integer> hs = new HashSet<>();
+        for(int n : nums){
+            if (hs.contains(n)) return true;
+            else hs.add(n);
         }
+        return false;
     }
-    return false;
-}
 }
