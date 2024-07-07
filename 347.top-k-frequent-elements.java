@@ -33,5 +33,24 @@ class Solution {
         return res;
   }  
 }
+
+// an solution using priority queue
+class Solution {
+    public int[] topKFrequent(int[] nums, int k) {
+        HashMap<Integer, Integer> count = new HashMap<>();
+        for(int n : nums){
+            count.put(n, count.getOrDefault(n, 0)+1);
+        }
+        Queue<Integer> pq = new PriorityQueue<>((n1, n2)->count.get(n2)-count.get(n1));
+        for(Integer key : count.keySet()){
+            pq.add(key);
+        }
+        int[] result = new int[k];
+        for(int i = 0; i < k; i++){
+            result[i] = pq.poll();
+        }
+        return result;
+    }
+}
 // @lc code=end
 
