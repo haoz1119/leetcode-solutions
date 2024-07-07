@@ -38,6 +38,7 @@ class Solution {
         for(int n : nums){
             count.put(n, count.getOrDefault(n, 0)+1);
         }
+        // comparator for the priority queue, work as a max heap, n1 is in front of n2 if count.get(n2) - count.get(n1) < 0
         Queue<Integer> pq = new PriorityQueue<>((n1, n2)->count.get(n2)-count.get(n1));
         for(Integer key : count.keySet()){
             pq.add(key);
