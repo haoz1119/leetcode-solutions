@@ -1,4 +1,4 @@
-# Last updated: 10/23/2025, 9:14:01 PM
+# Last updated: 10/23/2025, 9:14:05 PM
 class Solution:
     def nextGreaterElement(self, nums1: List[int], nums2: List[int]) -> List[int]:
         ans = [-1]*len(nums1)
