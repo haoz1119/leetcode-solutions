@@ -1,4 +1,4 @@
-# Last updated: 10/26/2025, 6:39:06 PM
+# Last updated: 10/26/2025, 7:01:55 PM
 class Solution:
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
         n = len(letters)
@@ -12,3 +12,4 @@ class Solution:
             else:
                 left = mid + 1               # need a strictly larger letter
         return letters[ans] if ans != n else letters[0]
+ # inclusive style [l, r]
