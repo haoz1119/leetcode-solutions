@@ -1,12 +1,14 @@
-# Last updated: 10/26/2025, 6:35:16 PM
+# Last updated: 10/26/2025, 6:39:06 PM
 class Solution:
     def nextGreatestLetter(self, letters: List[str], target: str) -> str:
-        l, r = 0, len(letters)
-        # mean idea is the unknown window [l, r), the boundary updates keep the window invariant
-        while l < r:
-            mid = (l+r)//2
-            if letters[mid]>target:
-                r = mid
+        n = len(letters)
+        left, right = 0, n - 1
+        ans = n  # “no answer yet” sentinel (= wrap)
+        while left <= right:
+            mid = (left + right) // 2
+            if letters[mid] > target:        # looking for first '>'
+                ans = mid                    # record candidate
+                right = mid - 1              # keep searching left side
             else:
-                l = mid+1
-        return letters[l] if l !=len(letters) else letters[0]
+                left = mid + 1               # need a strictly larger letter
+        return letters[ans] if ans != n else letters[0]
