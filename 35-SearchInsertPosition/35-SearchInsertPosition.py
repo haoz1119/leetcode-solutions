@@ -1,14 +1,11 @@
-# Last updated: 10/26/2025, 2:46:51 PM
+# Last updated: 10/26/2025, 6:30:34 PM
 class Solution:
-    def searchInsert(self, nums: List[int], target: int) -> int:
-        left, right = 0, len(nums) - 1
-        while left <= right:
-            pivot = (left + right) // 2
-            if nums[pivot] == target:
-                return pivot
-            if target < nums[pivot]:
-                right = pivot - 1
+    def nextGreatestLetter(self, letters: List[str], target: str) -> str:
+        l, r = 0, len(letters)
+        while l < r:
+            mid = (l+r)//2
+            if letters[mid]>target:
+                r = mid
             else:
-                left = pivot + 1
-        return left
-        
+                l = mid+1
+        return letters[l] if l !=len(letters) else letters[0]
