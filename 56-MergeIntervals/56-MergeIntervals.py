@@ -1,18 +1,18 @@
-# Last updated: 11/5/2025, 7:50:39 PM
+# Last updated: 11/5/2025, 7:54:18 PM
 class Solution:
     def merge(self, intervals: List[List[int]]) -> List[List[int]]:
-        if len(intervals) == 1: return intervals
-        intervals.sort(key=lambda x:(x[0]))
-        start = intervals[0][0]
-        end = intervals[0][1]
-        prev = [start, end]
+
+        intervals.sort(key=lambda x: x[0])
+
         merged = []
-        for interval in intervals[1:]:
-            if prev[1] >=interval[0]:
-                prev[1] = max(prev[1], interval[1])
+        for interval in intervals:
+            # if the list of merged intervals is empty or if the current
+            # interval does not overlap with the previous, simply append it.
+            if not merged or merged[-1][1] < interval[0]:
+                merged.append(interval)
             else:
-                merged.append(prev)
-                prev = interval
-        merged.append(prev)
+                # otherwise, there is overlap, so we merge the current and previous
+                # intervals.
+                merged[-1][1] = max(merged[-1][1], interval[1])
+
         return merged
-                
