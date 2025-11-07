@@ -1,4 +1,4 @@
-# Last updated: 11/6/2025, 9:45:31 PM
+# Last updated: 11/6/2025, 9:45:57 PM
 class Solution:
     def insert(self, intervals: List[List[int]], newInterval: List[int]) -> List[List[int]]:
         def overlap(a1:int, a2:int, b1:int, b2:int)->bool:
