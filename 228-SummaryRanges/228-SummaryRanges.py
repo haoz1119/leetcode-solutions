@@ -1,19 +1,21 @@
-# Last updated: 11/6/2025, 4:47:50 PM
+# Last updated: 11/6/2025, 5:05:41 PM
 class Solution:
     def summaryRanges(self, nums: List[int]) -> List[str]:
         if len(nums) == 0: return []
         if len(nums) == 1: return [f"{nums[0]}"]
         out = []
-        for i in range(len(nums)):
-            if not out or out[-1][1]!=nums[i]-1:
-                out.append([nums[i],nums[i]])
-            elif out[-1][1]==nums[i]-1:
-                out[-1][1] = nums[i]
-
-        for i, r in enumerate(out):
-            s,e = r
-            if s != e:
-                out[i]=f"{s}->{e}"
+        end = nums[0]
+        start = end
+        for i in nums[1:]:
+            if i == end + 1 :
+                end = i
             else:
-                out[i]=f"{s}"
+                if start == end: 
+                    out.append(f"{start}")
+                else:
+                    out.append(f"{start}->{end}")  
+                start = i
+                end = i
+
+        out.append(f"{end}" if end == start else f"{start}->{end}")
         return out
