@@ -1,4 +1,4 @@
-# Last updated: 11/19/2025, 5:43:20 PM
+# Last updated: 11/19/2025, 5:44:16 PM
 # Definition for a binary tree node.
 # class TreeNode:
 #     def __init__(self, val=0, left=None, right=None):
@@ -6,13 +6,20 @@
 #         self.left = left
 #         self.right = right
 class Solution:
-    def isValidBST(self, root: Optional[TreeNode]) -> bool:
-        def dfs(root, low = -math.inf, high = math.inf)->bool:
-            if not root:
+    def isValidBST(self, root: TreeNode) -> bool:
+
+        def validate(node, low=-math.inf, high=math.inf):
+            # Empty trees are valid BSTs.
+            if not node:
                 return True
-            if root.left and (root.left.val >= root.val or root.left.val <= low):
+
+            # The current node's value must be between low and high.
+            if node.val <= low or node.val >= high:
                 return False
-            if root.right and (root.right.val <= root.val or root.right.val >= high):
-                return False
-            return dfs(root.left, low, root.val) and dfs(root.right, root.val, high)
-        return dfs(root)
+
+            # The left and right subtree must also be valid.
+            return validate(node.right, node.val, high) and validate(
+                node.left, low, node.val
+            )
+
+        return validate(root)
