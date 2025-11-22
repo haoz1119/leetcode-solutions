@@ -1,38 +1,20 @@
-# Last updated: 11/21/2025, 5:30:50 PM
-class TrieNode:
-    def __init__(self):
-        self.children = {}
-        self.end = False
-
+# Last updated: 11/21/2025, 5:44:24 PM
 class WordDictionary:
-
     def __init__(self):
-        self.root = TrieNode()
+        self.d = defaultdict(set)
 
     def addWord(self, word: str) -> None:
-        node = self.root
-        for ch in word:
-            if ch not in node.children:
-                node.children[ch] = TrieNode()
-            node = node.children[ch]
-        node.end = True
+        self.d[len(word)].add(word)
 
     def search(self, word: str) -> bool:
-        def dfs(d: int, node: TrieNode)->bool:
-            if d >= l:
-                return node.end
-            ch = word[d]
-            if ch != '.':
-                if ch in node.children:
-                    return dfs(d+1, node.children[ch])
-                else: return False
-            else:
-                for value in node.children.values():
-                    if dfs(d+1, value): return True
-                return False
-        l = len(word)
-        return dfs(0, self.root)
-        
+        m = len(word)
+        for dict_word in self.d[m]:
+            i = 0
+            while i < m and (dict_word[i] == word[i] or word[i] == "."):
+                i += 1
+            if i == m:
+                return True
+        return False
 
 
 # Your WordDictionary object will be instantiated and called as such:
