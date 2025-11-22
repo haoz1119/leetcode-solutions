@@ -1,4 +1,4 @@
-# Last updated: 11/21/2025, 5:27:34 PM
+# Last updated: 11/21/2025, 5:30:23 PM
 class TrieNode:
     def __init__(self):
         self.children = {}
@@ -28,8 +28,8 @@ class WordDictionary:
                 else: return False
             else:
                 res = False
-                for key in node.children.keys():
-                    t = dfs(d+1, node.children[key])
+                for value in node.children.values():
+                    t = dfs(d+1, value)
                     res = t or res
                 return res
         l = len(word)
