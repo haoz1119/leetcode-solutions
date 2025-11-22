@@ -1,4 +1,4 @@
-# Last updated: 11/21/2025, 5:10:16 PM
+# Last updated: 11/21/2025, 5:27:34 PM
 class TrieNode:
     def __init__(self):
         self.children = {}
@@ -21,13 +21,12 @@ class WordDictionary:
         def dfs(d: int, node: TrieNode)->bool:
             if d >= l:
                 return node.end
-            if word[d] != '.':
-                if word[d] in node.children:
-                    return dfs(d+1, node.children[word[d]])
+            ch = word[d]
+            if ch != '.':
+                if ch in node.children:
+                    return dfs(d+1, node.children[ch])
                 else: return False
             else:
-                if not node.children:
-                    return False
                 res = False
                 for key in node.children.keys():
                     t = dfs(d+1, node.children[key])
