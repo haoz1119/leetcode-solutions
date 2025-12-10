@@ -1,4 +1,4 @@
-# Last updated: 12/9/2025, 5:21:54 PM
+# Last updated: 12/9/2025, 5:32:39 PM
 1# Definition for a binary tree node.
 2# class TreeNode:
 3#     def __init__(self, val=0, left=None, right=None):
@@ -17,13 +17,14 @@
 16            level = []
 17            for i in range(lv_size):
 18                cur_node = queue.popleft()
-19                level.append(cur_node.val) 
-20                if cur_node.left:
-21                    queue.append(cur_node.left)
-22                if cur_node.right:
-23                    queue.append(cur_node.right)
-24
-25            level = list(reversed(level)) if lv_idx % 2 else level
-26            result.append(level)  
-27            lv_idx += 1
-28        return result
+19                if lv_idx % 2:
+20                    level.insert(0, cur_node.val)
+21                else:
+22                    level.append(cur_node.val) 
+23                if cur_node.left:
+24                    queue.append(cur_node.left)
+25                if cur_node.right:
+26                    queue.append(cur_node.right)
+27            result.append(level)  
+28            lv_idx += 1
+29        return result
