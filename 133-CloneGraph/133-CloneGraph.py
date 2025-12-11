@@ -1,4 +1,4 @@
-# Last updated: 12/10/2025, 4:00:21 PM
+# Last updated: 12/10/2025, 4:29:48 PM
 1"""
 2# Definition for a Node.
 3class Node:
@@ -13,19 +13,12 @@
 12    def cloneGraph(self, node: Optional['Node']) -> Optional['Node']:
 13        if not node: return None
 14        visited = {}
-15        discovered = deque([node])
-16        discset = set()
-17        while discovered:
-18            cur_node = discovered.popleft()
-19            discset.discard(cur_node)
-20            visited[cur_node] = Node(cur_node.val)
-21            for nei in cur_node.neighbors:
-22                if nei not in visited:
-23                    if nei not in discset:
-24                        discovered.append(nei)
-25                        discset.add(nei)
-26                else:
-27                    visited[nei].neighbors.append(visited[cur_node])
-28                    visited[cur_node].neighbors.append(visited[nei])
-29
-30        return visited[node]
+15        def dfs(node):
+16            for nei in node.neighbors:
+17                if nei not in visited:
+18                    visited[nei] = Node(nei.val)
+19                    dfs(nei)
+20                visited[node].neighbors.append(visited[nei])
+21        visited[node] = Node(node.val)
+22        dfs(node)
+23        return visited[node]
