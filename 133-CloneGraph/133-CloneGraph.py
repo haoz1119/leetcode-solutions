@@ -1,4 +1,4 @@
-# Last updated: 12/10/2025, 3:56:50 PM
+# Last updated: 12/10/2025, 4:00:21 PM
 1"""
 2# Definition for a Node.
 3class Node:
@@ -14,15 +14,18 @@
 13        if not node: return None
 14        visited = {}
 15        discovered = deque([node])
-16        while discovered:
-17            cur_node = discovered.popleft()
-18            visited[cur_node] = Node(cur_node.val)
-19            for nei in cur_node.neighbors:
-20                if nei not in visited:
-21                    if nei not in discovered:
-22                        discovered.append(nei)
-23                else:
-24                    visited[nei].neighbors.append(visited[cur_node])
-25                    visited[cur_node].neighbors.append(visited[nei])
-26
-27        return visited[node]
+16        discset = set()
+17        while discovered:
+18            cur_node = discovered.popleft()
+19            discset.discard(cur_node)
+20            visited[cur_node] = Node(cur_node.val)
+21            for nei in cur_node.neighbors:
+22                if nei not in visited:
+23                    if nei not in discset:
+24                        discovered.append(nei)
+25                        discset.add(nei)
+26                else:
+27                    visited[nei].neighbors.append(visited[cur_node])
+28                    visited[cur_node].neighbors.append(visited[nei])
+29
+30        return visited[node]
