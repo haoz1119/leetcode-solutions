@@ -1,4 +1,4 @@
-# Last updated: 12/14/2025, 5:57:41 PM
+# Last updated: 12/14/2025, 5:57:46 PM
 1from collections import deque
 2class Solution:
 3    def canFinish(self, numCourses: int, prerequisites: List[List[int]]) -> bool:
