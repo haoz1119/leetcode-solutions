@@ -1,4 +1,4 @@
-# Last updated: 12/16/2025, 3:01:30 PM
+# Last updated: 12/16/2025, 3:17:12 PM
 1import math
 2from heapq import heappush, heappop
 3from typing import List
@@ -16,13 +16,13 @@
 15        heappush(queue, (0, k))
 16        while queue:
 17            t, node = heappop(queue)
-18            for nei in adj[node]:
-19                cur_t = t + nei[1]
-20                if cur_t < time[nei[0]]:
-21                    time[nei[0]] = cur_t
-22                    heappush(queue, (cur_t, nei[0]))
-23        for t in time[1:]:
-24            if t == math.inf:
-25                return -1
-26        return max(time[1:])
+18            if t > time[node]:
+19                continue
+20            for nei in adj[node]:
+21                cur_t = t + nei[1]
+22                if cur_t < time[nei[0]]:
+23                    time[nei[0]] = cur_t
+24                    heappush(queue, (cur_t, nei[0]))
+25        max_time = max(time[1:])
+26        return max_time if max_time != math.inf else -1
 27
