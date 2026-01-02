@@ -1,4 +1,4 @@
-# Last updated: 1/1/2026, 4:39:19 PM
+# Last updated: 1/1/2026, 4:39:22 PM
 1class Solution:
 2    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
 3        n = len(s)
