@@ -1,4 +1,4 @@
-# Last updated: 1/2/2026, 9:56:19 PM
+# Last updated: 1/2/2026, 9:56:23 PM
 1from functools import lru_cache
 2class Solution:
 3    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
