@@ -1,13 +1,25 @@
-# Last updated: 1/1/2026, 4:52:41 PM
-1class Solution:
-2    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
-3        n = len(s)
-4        words = set(wordDict)
-5        max_len = max(len(w) for w in words)
-6        dp = [False] * (n+1)
-7        dp[0] = True
-8        for i in range(1,n+1):
-9            start = max(0, i-max_len)
-10            dp[i] = any(dp[j] and s[j:i] in words for j in range(start, i))
-11                
-12        return dp[n]
+# Last updated: 1/2/2026, 9:56:19 PM
+1from functools import lru_cache
+2class Solution:
+3    def wordBreak(self, s: str, wordDict: List[str]) -> bool:
+4        n = len(s)
+5        words = set(wordDict)
+6        min_len = min(len(w) for w in words)
+7        max_len = max(len(w) for w in words)
+8        @lru_cache(None)
+9        def dfs(start, end):
+10            if end - start < min_len : return False
+11            if end - start > max_len : return False
+12            if s[start:end] not in words:
+13                return False
+14            if end == n:
+15                return True
+16            for i in range(end+1, n+1):
+17                if dfs(end, i):
+18                    return True
+19            return False
+20                
+21        for i in range(1, n+1):
+22            if dfs(0, i):
+23                return True
+24        return False
