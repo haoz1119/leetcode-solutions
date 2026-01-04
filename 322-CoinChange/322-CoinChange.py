@@ -1,28 +1,32 @@
-# Last updated: 1/3/2026, 5:10:43 PM
-1class Solution:
-2    def exist(self, board: List[List[str]], word: str) -> bool:
-3        l = len(word)
-4        m = len(board)
-5        n = len(board[0])
-6        dirs = [(1,0),(-1,0),(0,1),(0,-1)]
-7        def inbound(r, c):
-8            return 0<=r<m and 0<=c<n
-9        def dfs(r, c, i):
-10            if i == l:
-11                return True
-12            for dr, dc in dirs:
-13                nr, nc = r+dr, c+dc
-14                if inbound(nr, nc) and board[nr][nc] == word[i]:
-15                    board[nr][nc] = '#'
-16                    if dfs(nr, nc, i+1):
-17                        return True
-18                    board[nr][nc] = word[i]
-19            return False
-20        for r in range(m):
-21            for c in range(n):
-22                if board[r][c] == word[0]:
-23                    board[r][c] = '#'
-24                    if dfs(r, c, 1):
-25                        return True
-26                    board[r][c] = word[0]
-27        return False
+# Last updated: 1/3/2026, 6:13:46 PM
+1from collections import deque
+2class Solution:
+3    def numIslands(self, grid: List[List[str]]) -> int:
+4        dirs = [(1,0),(-1,0),(0,1),(0,-1)]
+5        def inbound(r, c, m, n):
+6            return (r >= 0 and r < m) and (c >= 0 and c < n)
+7        def bfs():
+8            while queue:
+9                i, j = queue.popleft()
+10                for dr, dc in dirs:
+11                    nr, nc = i+dr, j+ dc
+12                    if inbound(nr, nc, m, n) and grid[nr][nc] == '1' and (nr, nc) not in visited:
+13                        visited.add((nr, nc))
+14                        queue.append((nr, nc))
+15
+16        m = len(grid)
+17        n = len(grid[0])
+18        visited = set()
+19        queue = deque()
+20        count = 0
+21        for i in range(m):
+22            for j in range(n):
+23                if grid[i][j] == '1' and (i, j) not in visited:
+24                    count += 1
+25                    visited.add((i, j))
+26                    queue.append((i,j))
+27                    bfs()
+28        return count
+29
+30
+31
