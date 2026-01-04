@@ -1,4 +1,4 @@
-# Last updated: 1/3/2026, 8:04:48 PM
+# Last updated: 1/3/2026, 8:04:56 PM
 1from collections import deque
 2class Solution:
 3    def numIslands(self, grid: List[List[str]]) -> int:
