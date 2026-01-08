@@ -1,4 +1,4 @@
-# Last updated: 1/7/2026, 4:54:11 PM
+# Last updated: 1/7/2026, 4:56:48 PM
 1class Solution:
 2    def invalidTransactions(self, transactions: List[str]) -> List[str]:
 3        d = defaultdict(list)  # Mapping of names to their transaction details.
