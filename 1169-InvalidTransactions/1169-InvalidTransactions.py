@@ -1,23 +1,28 @@
-# Last updated: 1/7/2026, 4:56:48 PM
-1class Solution:
-2    def invalidTransactions(self, transactions: List[str]) -> List[str]:
-3        d = defaultdict(list)  # Mapping of names to their transaction details.
-4        idx = set()  # Set of indices of possibly invalid transactions.
-5
-6        for i, x in enumerate(transactions):
-7            name, time, amount, city = x.split(",")
-8            time, amount = int(time), int(amount)
-9            d[name].append((time, city, i))
-10          
-11            # Check if the transaction amount exceeds $1000.
-12            if amount > 1000:
-13                idx.add(i)
-14              
-15            # Check for transactions with the same name in different cities within 60 minutes.
-16            for t, c, j in d[name]:
-17                if c != city and abs(time - t) <= 60:
-18                    idx.add(i)
-19                    idx.add(j)
-20
-21        # Generate a list of transactions that are possibly invalid.
-22        return [transactions[i] for i in idx]
+# Last updated: 1/7/2026, 4:57:08 PM
+1from collections import defaultdict
+2class Solution:
+3    def invalidTransactions(self, transactions: List[str]) -> List[str]:
+4        trnx = []
+5        result = []
+6        for x in transactions:
+7            tx = x.split(",")
+8            trnx.append((tx[0], int(tx[1]), int(tx[2]), tx[3]))
+9        trnx_dict = defaultdict(list)
+10        for name, t, amount, city in trnx:
+11            trnx_dict[name].append([t, amount, city])
+12        
+13        for name, value in trnx_dict.items():
+14            l = len(value)
+15            for i in range(l):
+16                if value[i][1] > 1000 and len(value[i]) <= 3:
+17                    value[i].append(0)
+18                for j in range(i+1, l):
+19                    if (abs(value[i][0] - value[j][0]) <= 60 and value[i][2] != value[j][2]):
+20                        if len(value[i]) <= 3: value[i].append(0)
+21                        if len(value[j]) <= 3: value[j].append(0)
+22        for name, value in trnx_dict.items():
+23            for x in value:
+24                if len(x) == 4:
+25                    result.append(f"{name},{x[0]},{x[1]},{x[2]}")
+26        return result
+27
