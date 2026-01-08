@@ -1,4 +1,4 @@
-# Last updated: 1/7/2026, 4:57:08 PM
+# Last updated: 1/7/2026, 4:57:10 PM
 1from collections import defaultdict
 2class Solution:
 3    def invalidTransactions(self, transactions: List[str]) -> List[str]:
