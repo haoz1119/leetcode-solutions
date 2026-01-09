@@ -1,4 +1,4 @@
-# Last updated: 1/8/2026, 10:29:42 PM
+# Last updated: 1/8/2026, 10:31:33 PM
 1from collections import defaultdict, deque
 2class Solution:
 3    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
@@ -16,21 +16,20 @@
 15                return -1.0
 16            if a == c:
 17                return 1.0
-18            rcost = 1
-19            visited.add(a)
-20            for nei, cost in adj[a]:
-21                if nei not in visited:
-22                    if nei == c:
-23                        return rcost*cost
-24                    else:
-25                        result = dfs(nei, c, visited)
-26                        if result != -1.0:
-27                            return rcost*cost*result
-28            return -1.0
-29                    
-30        for a, c in queries:
-31            visited = set()
-32            res.append(dfs(a, c, visited))
-33        return res
-34            
-35
+18            visited.add(a)
+19            for nei, cost in adj[a]:
+20                if nei not in visited:
+21                    if nei == c:
+22                        return cost
+23                    else:
+24                        result = dfs(nei, c, visited)
+25                        if result != -1.0:
+26                            return cost*result
+27            return -1.0
+28                    
+29        for a, c in queries:
+30            visited = set()
+31            res.append(dfs(a, c, visited))
+32        return res
+33            
+34
