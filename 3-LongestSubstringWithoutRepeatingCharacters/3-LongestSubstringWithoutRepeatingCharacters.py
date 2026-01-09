@@ -1,15 +1,13 @@
-# Last updated: 1/8/2026, 10:54:46 PM
+# Last updated: 1/8/2026, 11:00:06 PM
 1class Solution:
 2    def lengthOfLongestSubstring(self, s: str) -> int:
 3        left = 0
 4        maxl = 0
-5        last_seen = {}
+5        count = defaultdict(int)
 6        for i, ch in enumerate(s):
-7            if ch not in last_seen:
-8                last_seen[ch] = i
-9            elif ch in last_seen:
-10                if last_seen[ch] >= left:
-11                    left = last_seen[ch] + 1
-12                last_seen[ch] = i
-13            maxl = max(maxl, i - left + 1)
-14        return maxl
+7            count[ch] += 1
+8            while count[ch] > 1:
+9                count[s[left]] -= 1
+10                left += 1
+11            maxl = max(maxl, i - left + 1)
+12        return maxl
