@@ -1,4 +1,4 @@
-# Last updated: 1/8/2026, 11:24:01 PM
+# Last updated: 1/8/2026, 11:32:30 PM
 1class MinStack:
 2    # we want a stack that is non increasing
 3    """
@@ -14,21 +14,21 @@
 13    def push(self, val: int) -> None:
 14        self.stack.append(val)
 15        if len(self.minstack) == 0:
-16            self.minstack.append((val, len(self.stack)-1))
+16            self.minstack.append(val)
 17        else:
-18            if val < self.minstack[-1][0]:
-19                self.minstack.append((val, len(self.stack)-1))
+18            if val <= self.minstack[-1]:
+19                self.minstack.append(val)
 20
 21    def pop(self) -> None:
 22        val = self.stack.pop()
-23        if val == self.minstack[-1][0] and len(self.stack) == self.minstack[-1][1]:
+23        if val == self.minstack[-1]:
 24            self.minstack.pop()
 25
 26    def top(self) -> int:
 27        return self.stack[-1]
 28
 29    def getMin(self) -> int:
-30        return self.minstack[-1][0]
+30        return self.minstack[-1]
 31
 32
 33# Your MinStack object will be instantiated and called as such:
