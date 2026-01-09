@@ -1,4 +1,4 @@
-# Last updated: 1/8/2026, 9:14:59 PM
+# Last updated: 1/8/2026, 9:15:03 PM
 1from collections import defaultdict, deque
 2class Solution:
 3    def calcEquation(self, equations: List[List[str]], values: List[float], queries: List[List[str]]) -> List[float]:
