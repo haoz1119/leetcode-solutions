@@ -1,4 +1,4 @@
-# Last updated: 1/9/2026, 9:24:22 PM
+# Last updated: 1/9/2026, 9:24:25 PM
 1class Node:
 2        def __init__(self, key: int = -1, val: int = -1, prev: Node | None = None, nxt: Node | None = None):
 3            self.key= key
